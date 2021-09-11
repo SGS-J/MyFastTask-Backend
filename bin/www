@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+const db = require('../services/mongoDb/database');
+const app = require('../app').default;
+const config = require("config");
+
+const PORT = config.get('serverConfig.port');
+const env = config.util.getEnv('NODE_ENV');
+
+db.connectToDB()
+
+app.set('port', PORT);
+
+if(env !== 'production') {
+   app.listen(app.get('port'), () => {
+      console.log(`> Server listening on port ${app.get('port')}`);
+   })
+}

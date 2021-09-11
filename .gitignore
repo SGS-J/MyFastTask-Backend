@@ -1,0 +1,24 @@
+# testing
+/coverage
+dummy.json
+
+# nodejs
+node_modules
+
+# env_variables
+config
+
+# npm
+package-lock.json
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# front-end
+client
