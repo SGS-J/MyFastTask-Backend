@@ -21,7 +21,9 @@ export default {
                   );
                return true;
             }),
-            body('birthday').isDate(),
+            body('birthday').isDate({
+               format: "DD/MM/YYYY"
+            }),
          ],
          (req, res, next) => {
             const errors = validationResult(req);

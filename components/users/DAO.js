@@ -13,7 +13,6 @@ export default {
       );
    },
    async updateUser(username, user) {
-      console.log(username, user);
       return await UserCollection.findOneAndUpdate(
          { name: username },
          user
