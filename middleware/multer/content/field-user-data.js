@@ -1,14 +1,15 @@
-import multer from 'multer';
+import multer from "multer";
 
 const upload = multer();
 export default () => {
-   return upload.any([
-      'username',
-      'password',
-      'conf-password',
-      'birthday',
-      'gender',
-      'UIColor',
-      'avatar',
-   ]);
+  return upload.any([
+    "email",
+    "username",
+    "password",
+    "conf-password",
+    "birthday",
+    "gender",
+    "UIColor",
+    "avatar",
+  ]);
 };

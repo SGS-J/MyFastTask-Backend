@@ -1,19 +1,19 @@
-import taskDao from './DAO';
+import taskDao from "./DAO";
 
 export default {
-   createTask(task) {
-      return taskDao.createTask(task);
-   },
-   getAllTasks(username) {
-      return taskDao.getAllTasks(username);
-   },
-   getTasksMade(username) {
-      return taskDao.getTasksMade(username);
-   },
-   deleteTask(id) {
-      return taskDao.deleteTask(id);
-   },
-   updateTask(id, task) {
-      return taskDao.updateTask(id, task);
-   },
+  createTask(task) {
+    return taskDao.createTask(task);
+  },
+  getAllTasks(username) {
+    return taskDao.getAllTasks(username);
+  },
+  getTasksMade(userEmail) {
+    return taskDao.getTasksMade(userEmail);
+  },
+  deleteTask(id) {
+    return taskDao.deleteTask(id);
+  },
+  updateTask(id, task) {
+    return taskDao.updateTask(id, task);
+  },
 };
