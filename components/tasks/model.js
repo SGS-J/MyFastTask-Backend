@@ -4,8 +4,8 @@ export default {
   createTask(task) {
     return taskDao.createTask(task);
   },
-  getAllTasks(username) {
-    return taskDao.getAllTasks(username);
+  getAllTasks(userEmail) {
+    return taskDao.getAllTasks(userEmail);
   },
   getTasksMade(userEmail) {
     return taskDao.getTasksMade(userEmail);
@@ -14,6 +14,10 @@ export default {
     return taskDao.deleteTask(id);
   },
   updateTask(id, task) {
-    return taskDao.updateTask(id, task);
+    const taskAdapted = Object.keys(task).reduce((acc, key) => {
+      if (task[key]) acc[key] = task[key];
+      return acc;
+    }, {});
+    return taskDao.updateTask(id, taskAdapted);
   },
 };

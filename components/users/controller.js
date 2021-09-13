@@ -33,8 +33,8 @@ export default {
     res.redirect("/user/login");
   },
   async getUser(req, res) {
-    if (req.params.username === req.app.locals.userLogged) {
-      const user = await userModel.getUserByName(req.params.username);
+    if (req.params.userEmail === req.app.locals.userLogged) {
+      const user = await userModel.getUserByEmail(req.params.userEmail);
       await res.json({
         name: user.name,
         avatar: {
@@ -64,7 +64,7 @@ export default {
       } else res.status(400).end();
     },
   ],
-  confirmUnauthentication(req, res) {
+  confirmUnauthentication(req, res, next) {
     if (req.isAuthenticated())
       res.redirect(`/user/${req.app.locals.userLogged}/me`);
     else res.end();
