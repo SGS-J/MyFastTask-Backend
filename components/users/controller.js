@@ -14,7 +14,7 @@ export default {
         password: req.body.password,
         gender: req.body.gender || "Unknown",
         birthday: { date: req.body.birthday },
-        UIColor: req.body.UIColor || "Red",
+        UIColor: req.body.UIColor || "DB3E00",
         avatar: req.files[0],
       });
       res.redirect("/user/login");

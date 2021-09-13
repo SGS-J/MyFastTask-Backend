@@ -15,7 +15,7 @@ const userSchema = new Schema({
     },
     required: true,
   },
-  UIColor: { type: String, required: true, default: "Red" },
+  UIColor: { type: String, required: true, default: "DB3E00" },
   avatar: {
     type: {
       originalname: String,
