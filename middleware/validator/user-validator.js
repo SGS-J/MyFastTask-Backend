@@ -1,9 +1,15 @@
 import { body, validationResult } from "express-validator";
 import userModel from "../../components/users/model";
+import moment from "moment";
 
 export default {
   validate() {
     return [
+      (req, res, next) => {
+        const date = req.body.birthday;
+        req.body.birthday = moment(date).format("DD/MM/YYYY");
+        next();
+      },
       [
         body("email").isEmail(),
         body("email").custom(async (value) => {
@@ -12,9 +18,7 @@ export default {
           return true;
         }),
         body("username").isLength({ min: 3, max: 12 }),
-        body("password")
-          .isLength({ min: 8 })
-          .matches(/\d{3,}/g),
+        body("password").matches(/^(?=.*\w)(?=.*(\d{3,}))[\w\d]{8,}$/),
         body("conf-password").custom((value, { req }) => {
           if (value !== req.body.password)
             throw new Error("Password confirmation doesn't match password");

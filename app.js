@@ -4,10 +4,12 @@ import config from "config";
 import passport from "passport";
 import expressSession from "express-session";
 import indexRouter from "./routes/index";
-import "./middleware/error-handler";
+import errorHandler from "./middleware/error-handler";
+import corsMiddleware from "./middleware/cors";
 import "./middleware/authentication/index";
 
 const app = express();
+app.use(corsMiddleware());
 app.use(logger(config.get("logger")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -21,6 +23,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use("/", errorHandler);
 app.use("/", indexRouter);
 
 app.locals.userLogged = "";
