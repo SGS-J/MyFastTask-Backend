@@ -2,6 +2,9 @@ import userModel from "./model";
 import validator from "../../middleware/validator/user-validator";
 import formHandler from "../../middleware/multer/index";
 import passport from "passport";
+import config from "config";
+
+const clientDomain = config.get("serverConfig.cors.domain");
 
 export default {
   addUser: [
@@ -17,14 +20,14 @@ export default {
         UIColor: req.body.UIColor || "#DB3E00",
         avatar: req.files[0],
       });
-      res.redirect("/user/login");
+      res.redirect(`${clientDomain}/user/login`);
     },
   ],
   loginUser: [
     passport.authenticate("login", { failureRedirect: "/user/login" }),
     (req, res) => {
       req.app.locals.userLogged = req.body.email;
-      res.redirect(`/user/${req.body.email}/me`);
+      res.redirect(`${clientDomain}/user/${req.body.email}/me`);
     },
   ],
   logoutUser(req, res) {
