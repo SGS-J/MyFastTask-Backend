@@ -20,14 +20,14 @@ export default {
         UIColor: req.body.UIColor || "#DB3E00",
         avatar: req.files[0],
       });
-      res.redirect(`${clientDomain}/user/login`);
+      res.end();
     },
   ],
   loginUser: [
     passport.authenticate("login", { failureRedirect: "/user/login" }),
     (req, res) => {
       req.app.locals.userLogged = req.body.email;
-      res.redirect(`${clientDomain}/user/${req.body.email}/me`);
+      res.json({ userLogged: req.body.email });
     },
   ],
   logoutUser(req, res) {
