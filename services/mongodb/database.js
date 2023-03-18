@@ -15,13 +15,13 @@ export async function connectToDB() {
          })
       console.log(`> mongodb is connected on ${db.connection.host}`);
    } catch (error) {
-      console.log('>> Error connecting to database'); 
+      console.error('> Error connecting to database');
       process.exit(-1);
    }
 }
 
 export async function closeDB() {
-   await mongoose.disconnect(); 
+   await mongoose.disconnect();
 }
 
 export async function deleteDB() {
@@ -30,12 +30,12 @@ export async function deleteDB() {
          console.log('Are you sure? (yes/no)');
          process.on('data', async chunk => {
             /yes | y/.test(String(chunk)) && await kill()
-         }) 
+         })
       } else {
          await kill()
       }
    } catch (error) {
-      console.warn('Error deleting the database'); 
+      console.warn('Error deleting the database');
    }
 }
 

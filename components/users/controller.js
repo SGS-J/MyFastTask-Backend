@@ -24,7 +24,7 @@ export default {
     },
   ],
   loginUser: [
-    passport.authenticate("login", { failureRedirect: "/user/login" }),
+    passport.authenticate("login"),
     (req, res) => {
       req.app.locals.userLogged = req.body.email;
       res.json({ userLogged: req.body.email });
@@ -33,7 +33,7 @@ export default {
   logoutUser(req, res) {
     req.app.locals.userLogged = "";
     req.logout();
-    res.redirect("/user/login");
+    res.end();
   },
   async getUser(req, res) {
     if (req.params.userEmail === req.app.locals.userLogged) {

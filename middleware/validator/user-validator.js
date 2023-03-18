@@ -7,7 +7,7 @@ export default {
     return [
       (req, res, next) => {
         const date = req.body.birthday;
-        req.body.birthday = moment(date).format("DD/MM/YYYY");
+        req.body.birthday = moment(new Date(date)).format("DD/MM/YYYY");
         next();
       },
       [
